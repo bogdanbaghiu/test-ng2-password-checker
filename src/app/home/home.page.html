@@ -6,15 +6,35 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<app-header></app-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content class="ion-padding">
+  <form [formGroup]="editUserForm" (ngSubmit)="onFormSubmit(editUserForm.value)">
+    <ion-list>
+      <ion-item class="ion-margin-bottom">
+        <ion-label position="stacked">{{'NAME' | translate}}</ion-label>
+        <ion-input type="text" formControlName="name" [(ngModel)]="name"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin-bottom">
+        <ion-label position="stacked">{{'SURNAME' | translate}}</ion-label>
+        <ion-input type="text" formControlName="surname" [(ngModel)]="surname"></ion-input>
+      </ion-item>
+      <ion-item class="ion-margin-bottom">
+        <ion-label position="stacked">{{'EMAIL' | translate}}</ion-label>
+        <ion-input type="text" formControlName="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">{{'PASSWORD' | translate}}</ion-label>
+        <ion-input type="password" formControlName="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="ion-margin-bottom">
+        <ng2-password-strength-bar [passwordToCheck]="password" [barLabel]="barLabelTitle" [barColors]="myColors">
+        </ng2-password-strength-bar>
+      </ion-item>
+      <ion-item class="ion-margin-bottom">
+        <ion-label position="stacked">{{'PASSWORD_CONFIRM' | translate}}</ion-label>
+        <ion-input type="password" formControlName="confirmpassword" [(ngModel)]="confirmpassword"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
 </ion-content>
